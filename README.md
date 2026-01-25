@@ -7,11 +7,11 @@ Les utilisateurs peuvent s'inscrire, se connecter, consulter les événements, e
 
 ## Architecture du projet 
 
-LinkShare/
-├─ backend/ 
-├─ frontend/
-├─ .gitignore
-└─ README.md
+LinkShare/  
+├─ backend/  
+├─ frontend/  
+├─ .gitignore  
+└─ README.md  
 
 
 **Backend** : Express, SQLite en mémoire (prototype), bcrypt pour le hash des mots de passe, JWT pour l’authentification.  
