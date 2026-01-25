@@ -56,3 +56,7 @@ Notes importantes :
 
 - La base de données est actuellement en mémoire (SQLite). Les données sont donc perdues à chaque redémarrage du backend.
 - Les mots de passe sont simplifiés pour le prototype → à ne pas utiliser en production.          
+
+## License
+
+Ce projet est libre pour usage éducatif / prototype.
