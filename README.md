@@ -30,14 +30,15 @@ Dans le terminal :
 git clone https://github.com/Bengousss/LinkShare.git  
 cd LinkShare  
 cd backend  
-npm install # Installe les dépendances  
-node server.js # http://localhost:3001  
+npm install    
+node server.js  
 
-(Le backend crée automatiquement un compte Admin et des événements de démonstration : Username : admin | Password : admin123)
+(sur : http://localhost:3001)  
+(Le backend crée automatiquement un compte Admin et des événements de démonstration : Username : admin | Password : admin123)  
 
 cd ../frontend  
-npm install # Installe les dépendances  
-npm run dev # Démarre l'application frontend  
+npm install  
+npm run dev  
 
 ## Utilisation
 
