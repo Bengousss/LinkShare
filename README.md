@@ -183,4 +183,3 @@ Ce projet est en développement actif. Les prochaines étapes sont suivies via l
 ## Licence
 
 Projet réalisé dans un cadre éducatif — libre pour usage personnel et pédagogique.  
-© 2025-2026 Benjamin VARENNE — ESTIAM
