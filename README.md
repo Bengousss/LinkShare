@@ -33,19 +33,22 @@ LinkShare est une plateforme unique, moderne, accessible et intuitive, pensée p
 ### Disponibles (prototype actuel)
 
 - **Authentification sécurisée** — inscription, connexion, déconnexion via JWT
-- **Gestion des rôles** — Admin, Coordinateur, Bénévole avec permissions différenciées
+- **Gestion des rôles** — Admin, Bénévole avec permissions différenciées
 - **Consultation des événements** — liste avec dates, descriptions et statuts
-- **Création d'événements** — réservée aux Admins (titre, description, date)
+- **Création, Suppression et Modification d'événements** — réservée aux Admins (titre, description, date)
 - **Inscription à un événement** — les bénévoles peuvent s'inscrire et se désinscrire
+- **Gestion du matériel** — les bénévoles peuvent réserver du matériel et (optionnel) l'associer à un évènement
+- **Consulter ses réservation** — les bénévoles peuvent consulter leur réservation
+- **Création, Suppression et Modification de matériel** — réservée aux Admins (titre, description, quanitité, état)
+- **Dashboard** — les utilisateurs peuvent consulter des dashboard avec leur statistique personnalisé via une page dédiée
+- **Consulter son Calendrier** — les utilisateurs peuvent consulter un calendrier avec les évnèments passés et futurs via une page dédiée
+- **Export Excel** — les utilisateurs peuvent exporter un Excel des évènements et des stocks (avec leur informations respectives) via un bouton sur ces pages
 - **Hashage des mots de passe** — bcrypt
 - **Interface responsive** — thème sombre, design moderne
 
 ### Prévues (roadmap)
 
-- [ ] Gestion du matériel (catalogue, réservation, suivi d'état)
 - [ ] Système de notifications par e-mail (rappels pré-événement)
-- [ ] Tableaux de bord et rapports d'activité
-- [ ] Validation des inscriptions par un coordinateur
 - [ ] Migration vers MySQL/PostgreSQL (base persistante)
 - [ ] Déploiement en production (o2switch + PM2)
 
@@ -70,22 +73,33 @@ LinkShare est une plateforme unique, moderne, accessible et intuitive, pensée p
 LinkShare/
 ├── backend/
 │   ├── routes/
-│   │   ├── auth.js            # Inscription, connexion, gestion des rôles
-│   │   ├── events.js          # CRUD événements
-│   │   └── registrations.js   # Inscription/désinscription des bénévoles
-│   ├── db.js                  # Initialisation SQLite + seed de démonstration
-│   ├── server.js              # Point d'entrée Express
+│   │   ├── auth.js                  # Inscription, connexion, gestion des rôles
+│   │   ├── events.js                # CRUD événements
+│   │   ├── materials.js             # CRUD matériel
+│   │   ├── materialReservations.js  # Gestion de la réservation de matériel
+│   │   └── registrations.js         # Inscription/désinscription des bénévoles
+│   ├── db.js                        # Initialisation SQLite + seed de démonstration
+│   ├── server.js                    # Point d'entrée Express
 │   └── package.json
 ├── frontend/
 │   ├── src/
+│   │   ├── components/
+│   │   │   ├── ConfirmModal.tsx + ConfirmModal.module.css
 │   │   ├── pages/
 │   │   │   ├── Login.tsx + Login.module.css
 │   │   │   ├── Register.tsx + Register.module.css
 │   │   │   └── Events.tsx + Events.module.css
+│   │   │   └── Dashboard.tsx + Dashboard.module.css
+│   │   │   └── Catalog.tsx + Catalog.module.css
+│   │   │   └── CalendarPage.tsx + CalendarPage.module.css
+│   │   ├── utils/
+│   │   │   └── ExportExcel.ts
 │   │   ├── App.tsx            # Routing + AuthContext
 │   │   ├── App.css            # Composants CSS globaux
 │   │   └── index.css          # Charte visuelle (variables, animations)
+│   │   └── main.tsx
 │   └── package.json
+│   └── tsconfig
 ├── .gitignore
 └── README.md
 ```
@@ -163,13 +177,23 @@ L'application est accessible sur **http://localhost:5173**
 - **Admin** : consulter les événements existants + créer de nouveaux événements
 - **Bénévole** : consulter les événements + s'inscrire / se désinscrire
 
+### Page `/Catalog`
+- **Admin** : consulter le matériel disponible + créer de nouveau matériel
+- **Bénévole** : consulter le matériel + réserver / annuler sa réservation
+
+### Page `/Dashboard`
+- **Admin** : consulter les graphiques avec des statistiques générales
+- **Bénévole** : consulter les graphiques avec des statistiques personnelles
+
+### Page `/CalendarPage`
+- **Admin** : consulter un calendrier avec les évènements passés et futurs
+- **Bénévole** : consulter un calendrier avec les évènements passés et futurs
+
 ---
 
 ## Limitations connues
 
-- **Base de données non persistante** : SQLite en mémoire, toutes les données sont perdues au redémarrage du backend. Prévu : migration vers MySQL.
 - **Pas de notifications** : le système d'e-mails automatiques n'est pas encore implémenté.
-- **Gestion du matériel absente** du frontend (modèle de données prévu côté backend).
 - **Pas de tests automatisés** pour le moment (Jest prévu).
 
 ---
