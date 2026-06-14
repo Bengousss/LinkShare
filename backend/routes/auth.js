@@ -4,7 +4,7 @@ const db      = require('../db');
 const bcrypt  = require('bcryptjs');
 const jwt     = require('jsonwebtoken');
 
-const SECRET = process.env.JWT_SECRET || 'linkshare_dev_secret_change_in_prod';
+const SECRET = process.env.JWT_SECRET || '7c4a8d09ca3762af61e5145636743dc26494f8941b7d83bc7214240253450c';
 
 function authMiddleware(req, res, next) {
   const authHeader = req.headers['authorization'];
@@ -78,6 +78,13 @@ router.get('/me', authMiddleware, (req, res) => {
   db.get(`SELECT id, username, role FROM users WHERE id = ?`, [req.user.id], (err, user) => {
     if (err || !user) return res.status(404).json({ error: 'Utilisateur non trouvé' });
     res.json(user);
+  });
+});
+
+router.get('/users', authMiddleware, adminMiddleware, (req, res) => {
+  db.all(`SELECT id, username, role FROM users ORDER BY id ASC`, [], (err, rows) => {
+    if (err) return res.status(500).json({ error: 'Erreur serveur' });
+    res.json(rows);
   });
 });
 

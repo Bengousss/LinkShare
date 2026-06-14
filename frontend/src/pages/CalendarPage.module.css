@@ -1,0 +1,134 @@
+.layout { min-height: 100vh; display: flex; flex-direction: column; }
+
+.nav {
+  height: 64px; background: var(--surface); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px);
+}
+.navLeft  { display: flex; align-items: center; gap: 10px; }
+.navLogo  { font-size: 1.4rem; color: var(--primary); }
+.navBrand { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; }
+.navRight { display: flex; align-items: center; gap: 12px; }
+.navUser  { display: flex; align-items: center; gap: 10px; }
+.avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--primary-dim); border: 2px solid var(--primary);
+  color: var(--primary); font-weight: 700; font-size: 0.85rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.avatarName { font-size: 0.85rem; font-weight: 600; color: var(--text-1); }
+
+.main    { flex: 1; padding: 32px 24px 60px; }
+.wrapper { display: grid; grid-template-columns: 1fr 280px; gap: 24px; max-width: 1200px; margin: 0 auto; }
+@media (max-width: 900px) { .wrapper { grid-template-columns: 1fr; } }
+
+.calendarSection { min-width: 0; }
+.calHeader {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;
+}
+.calNav   { display: flex; align-items: center; gap: 16px; }
+.calTitle { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; min-width: 180px; text-align: center; }
+.navBtn   {
+  background: var(--surface-2); border: 1px solid var(--border);
+  color: var(--text-1); font-size: 1.2rem; width: 36px; height: 36px;
+  border-radius: var(--radius-sm); cursor: pointer; display: flex;
+  align-items: center; justify-content: center; transition: background 0.15s;
+}
+.navBtn:hover { background: var(--border); }
+
+.legend      { display: flex; gap: 16px; margin-bottom: 12px; }
+.legendItem  { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; color: var(--text-2); }
+.dot         { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.dotFuture   { background: var(--primary); }
+.dotRegistered { background: var(--success); }
+.dotPast     { background: var(--text-3); }
+
+.grid {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+}
+
+.dayHeader {
+  background: var(--surface); padding: 10px 0; text-align: center;
+  font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--text-2);
+  border-bottom: 1px solid var(--border);
+}
+.dayHeader:not(:last-child) { border-right: 1px solid var(--border); }
+
+.cellEmpty {
+  background: var(--bg); min-height: 90px;
+  border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+
+.cell {
+  background: var(--surface); min-height: 90px; padding: 6px 8px;
+  border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  vertical-align: top; position: relative;
+}
+.cell:nth-child(7n) { border-right: none; }
+.grid > *:nth-last-child(-n+7) { border-bottom: none; }
+
+.cellPast  { background: rgba(0,0,0,0.15); }
+.cellToday { background: rgba(79,142,247,0.08); outline: 2px solid var(--primary); outline-offset: -2px; }
+
+.dayNum {
+  font-size: 0.8rem; font-weight: 600; color: var(--text-2);
+  display: block; margin-bottom: 4px;
+}
+.cellToday .dayNum { color: var(--primary); font-weight: 700; }
+
+.eventDots   { display: flex; flex-direction: column; gap: 3px; }
+.eventPill   {
+  width: 100%; text-align: left; border: none; border-radius: 4px;
+  padding: 2px 6px; font-size: 0.72rem; font-weight: 600;
+  cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  transition: opacity 0.15s;
+}
+.eventPill:hover   { opacity: 0.8; }
+.pillFuture        { background: rgba(79,142,247,0.2);  color: var(--primary); }
+.pillRegistered    { background: rgba(52,211,153,0.2);  color: var(--success); }
+.pillPast          { background: rgba(78,86,114,0.2);   color: var(--text-3); }
+
+.loadingState { display: flex; justify-content: center; align-items: center; min-height: 300px; }
+
+.sidebar        { display: flex; flex-direction: column; gap: 8px; }
+.sidebarTitle   { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-2); margin-bottom: 8px; }
+.upcomingList   { display: flex; flex-direction: column; gap: 6px; }
+.upcomingItem   {
+  display: flex; gap: 12px; align-items: center;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 12px 14px;
+  cursor: pointer; text-align: left; width: 100%;
+  transition: border-color 0.15s, background 0.15s;
+}
+.upcomingItem:hover { border-color: var(--primary); background: var(--surface-2); }
+.upcomingDate   { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; min-width: 36px; }
+.upcomingDay    { font-size: 1.2rem; font-weight: 700; color: var(--primary); line-height: 1; }
+.upcomingMonth  { font-size: 0.7rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.05em; }
+.upcomingInfo   { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.upcomingTitle  { font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-1); }
+
+.modalOverlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.65); backdrop-filter: blur(4px);
+  z-index: 200; display: flex; align-items: center; justify-content: center;
+  padding: 24px; animation: fadeIn 0.2s ease;
+}
+.modal {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  width: 100%; max-width: 480px; box-shadow: var(--shadow-lg); animation: fadeUp 0.25s ease; overflow: hidden;
+}
+.modalHeader {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding: 24px 24px 16px; border-bottom: 1px solid var(--border);
+}
+.modalTitle { font-size: 1.2rem; font-weight: 700; margin-bottom: 4px; }
+.modalDate  { font-size: 0.85rem; color: var(--text-2); }
+.modalClose {
+  background: none; border: none; color: var(--text-2); font-size: 1.1rem;
+  cursor: pointer; padding: 4px 8px; border-radius: 6px; margin-left: 12px; flex-shrink: 0;
+  transition: background 0.15s;
+}
+.modalClose:hover { background: var(--surface-2); }
+.modalBody   { padding: 20px 24px; }
+.modalFooter { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; justify-content: center; }

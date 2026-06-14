@@ -1,0 +1,85 @@
+.layout { min-height: 100vh; display: flex; flex-direction: column; }
+
+.nav {
+  height: 64px; background: var(--surface); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px);
+}
+.navLeft  { display: flex; align-items: center; gap: 10px; }
+.navLogo  { font-size: 1.4rem; color: var(--primary); }
+.navBrand { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; }
+.navRight { display: flex; align-items: center; gap: 16px; }
+.navUser  { display: flex; align-items: center; gap: 10px; }
+.avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--primary-dim); border: 2px solid var(--primary);
+  color: var(--primary); font-weight: 700; font-size: 0.85rem;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.avatarName { font-size: 0.85rem; font-weight: 600; color: var(--text-1); }
+
+.main { flex: 1; padding: 40px 0 60px; }
+.pageHeader { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 24px; gap: 16px; }
+.pageCount  { color: var(--text-2); font-size: 0.9rem; margin-top: 4px; }
+
+.tabs { display: flex; gap: 4px; margin-bottom: 28px; border-bottom: 1px solid var(--border); }
+.tab {
+  display: flex; align-items: center; gap: 6px;
+  padding: 10px 18px; border: none; background: transparent;
+  color: var(--text-2); font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem; font-weight: 600; cursor: pointer;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.tab:hover { color: var(--text-1); }
+.tabActive  { color: var(--primary); border-bottom-color: var(--primary); }
+.tabBadge {
+  background: var(--primary); color: #fff;
+  border-radius: 99px; font-size: 0.7rem; font-weight: 700;
+  padding: 1px 7px; min-width: 18px; text-align: center;
+}
+
+.formCard {
+  background: var(--surface); border: 1px solid var(--primary);
+  border-radius: var(--radius); padding: 28px; margin-bottom: 28px;
+  box-shadow: 0 0 24px rgba(79,142,247,0.08);
+}
+.formCardHeader { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.formCardHeader h3 { font-size: 1.05rem; }
+.closeBtn {
+  background: none; border: none; color: var(--text-2); font-size: 1.1rem;
+  cursor: pointer; padding: 4px 8px; border-radius: 6px; transition: background 0.15s;
+}
+.closeBtn:hover { background: var(--surface-2); color: var(--text-1); }
+.formHint  { font-size: 0.85rem; color: var(--text-2); margin-bottom: 16px; }
+.formGrid  { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.formActions { display: flex; gap: 12px; justify-content: flex-end; }
+.formError {
+  background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.3);
+  border-radius: var(--radius-sm); color: var(--danger);
+  padding: 8px 12px; font-size: 0.85rem; margin-bottom: 16px;
+}
+
+.loadingState { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 0; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+.materialCard       { display: flex; flex-direction: column; }
+.materialCardActive { border-color: var(--primary) !important; box-shadow: 0 0 20px rgba(79,142,247,0.12); }
+
+.cardHeader { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.cardIcon   { font-size: 1.3rem; }
+.cardTitle  { font-size: 1.05rem; margin-bottom: 8px; }
+.cardDesc   { font-size: 0.88rem; color: var(--text-2); margin-bottom: 16px; line-height: 1.6; flex: 1; }
+
+.stockBar   { margin-bottom: 16px; }
+.stockLabel { display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-2); margin-bottom: 6px; }
+.stockTrack { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.stockFill  { height: 100%; border-radius: 3px; transition: width 0.4s ease, background 0.4s ease; }
+
+.cardFooter  { display: flex; justify-content: flex-end; align-items: center; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border); }
+.adminActions { display: flex; gap: 8px; }
+
+.reservationList { display: flex; flex-direction: column; gap: 14px; }
+.reservationCard { padding: 20px 24px; }
+.reservationHeader { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; gap: 12px; }
+.reservationTitle  { font-size: 1rem; font-weight: 600; }
+.reservationMeta   { display: flex; gap: 20px; font-size: 0.85rem; color: var(--text-2); flex-wrap: wrap; }

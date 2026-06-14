@@ -57,13 +57,11 @@ export default function Register() {
       </div>
     );
   }
-
+  
   return (
     <div className={styles.page}>
       <form onSubmit={handleSubmit} className={`${styles.form} fade-up`}>
-
         <Link to="/login" className={styles.backLink}>← Retour à la connexion</Link>
-
         <div className={styles.brandRow}>
           <span className={styles.brandIcon}>⬡</span>
           <span className={styles.brandName}>LinkShare</span>
@@ -129,7 +127,6 @@ export default function Register() {
             <span className={styles.fieldHint}>Les mots de passe ne correspondent pas</span>
           )}
         </div>
-
         <button
           type="submit"
           className="btn btn-primary btn-full"
@@ -138,7 +135,6 @@ export default function Register() {
           {loading && <span className="spinner" />}
           {loading ? 'Création…' : 'Créer mon compte'}
         </button>
-
         <p className={styles.footer}>
           Déjà un compte ?{' '}
           <Link to="/login" className={styles.link}>Se connecter</Link>
