@@ -1,7 +1,7 @@
 const sqlite3 = require('sqlite3').verbose();
 const bcrypt = require('bcryptjs');
 
-const db = new sqlite3.Database('./linkshare.');
+const db = new sqlite3.Database(':memory:');
 
 db.serialize(() => {
 

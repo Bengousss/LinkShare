@@ -271,11 +271,11 @@ export default function Catalog() {
                         </select>
                       </div>
                       <div className="input-group">
-                        <label>Date de début (optionnel)</label>
+                        <label>Date de début</label>
                         <input className="input" type="date" value={resDateDebut} onChange={e => setResDateDebut(e.target.value)} />
                       </div>
                       <div className="input-group">
-                        <label>Date de fin (optionnel)</label>
+                        <label>Date de fin</label>
                         <input className="input" type="date" value={resDateFin} onChange={e => setResDateFin(e.target.value)} />
                       </div>
                     </div>
