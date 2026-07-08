@@ -1,4 +1,4 @@
-# ⬡ LinkShare
+# LinkShare
 
 > Plateforme de gestion de bénévoles et de matériel pour associations.
 
