@@ -4,7 +4,10 @@ const db      = require('../db');
 const bcrypt  = require('bcryptjs');
 const jwt     = require('jsonwebtoken');
 
-const SECRET = process.env.JWT_SECRET || '7c4a8d09ca3762af61e5145636743dc26494f8941b7d83bc7214240253450c';
+const SECRET = process.env.JWT_SECRET;
+if (!SECRET) {
+  console.warn('ATTENTION ! JWT_SECRET non défini dans l\'environnement !');
+}
 
 function authMiddleware(req, res, next) {
   const authHeader = req.headers['authorization'];
@@ -55,7 +58,8 @@ router.post('/login', (req, res) => {
     if (!match) return res.status(401).json({ error: 'Identifiants incorrects' });
     const token = jwt.sign(
       { id: user.id, username: user.username, role: user.role },
-      SECRET
+      SECRET,
+      { expiresIn: '24h' }
     );
     res.json({ token, role: user.role, username: user.username });
   });

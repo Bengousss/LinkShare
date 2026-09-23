@@ -13,8 +13,8 @@ router.post('/', authMiddleware, (req, res) => {
   if (quantite < 1) {
     return res.status(400).json({ error: 'La quantité doit être supérieure à 0' });
   }
-  if (new Date(date_fin) <= new Date(date_debut)) {
-    return res.status(400).json({ error: 'La date de fin doit être après la date de début' });
+  if (new Date(date_fin) < new Date(date_debut)) {
+    return res.status(400).json({ error: 'La date de fin ne peut être antérieure à la date de début' });
   }
 
   db.get(`SELECT * FROM materials WHERE id = ?`, [material_id], (err, material) => {
@@ -114,21 +114,22 @@ router.get('/event/:eventId', authMiddleware, (req, res) => {
 });
 
 router.delete('/:id', authMiddleware, (req, res) => {
-  const condition =
-    req.user.role === 'Admin'
-      ? `id = ?`
-      : `id = ? AND user_id = ${req.user.id}`;
+  const isAdmin = req.user.role === 'Admin';
+  const sql = isAdmin
+    ? `UPDATE material_reservations SET statut = 'annulée' WHERE id = ?`
+    : `UPDATE material_reservations SET statut = 'annulée' WHERE id = ? AND user_id = ?`;
 
-  db.run(
-    `UPDATE material_reservations SET statut = 'annulée' WHERE ${condition}`,
-    [req.params.id],
-    function (err) {
-      if (err) return res.status(500).json({ error: 'Erreur serveur' });
-      if (this.changes === 0)
-        return res.status(404).json({ error: 'Réservation introuvable ou non autorisée' });
-      res.json({ success: true });
+  const params = isAdmin
+    ? [req.params.id]
+    : [req.params.id, req.user.id];
+
+  db.run(sql, params, function (err) {
+    if (err) return res.status(500).json({ error: 'Erreur serveur' });
+    if (this.changes === 0) {
+      return res.status(404).json({ error: 'Réservation introuvable ou non autorisée' });
     }
-  );
+    res.json({ success: true });
+  });
 });
 
 module.exports = router;
