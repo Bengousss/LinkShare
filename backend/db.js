@@ -65,7 +65,7 @@ db.serialize(() => {
 
   db.get(`SELECT COUNT(*) as count FROM users`, [], (err, row) => {
     if (err || row.count > 0) return;
-    const adminPassword = bcrypt.hashSync('admin123', 8);
+    const adminPassword = bcrypt.hashSync('admin123', 10);
     db.run(
       `INSERT INTO users (username, password, role) VALUES (?, ?, ?)`,
       ['admin', adminPassword, 'Admin'],
