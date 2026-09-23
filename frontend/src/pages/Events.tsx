@@ -307,11 +307,13 @@ export default function Events() {
                         ))}
                       </div>
                     )}
-                    <div className={styles.reserveMaterialBtn}>
-                      <button className="btn btn-primary btn-sm" onClick={() => { closeModal(); navigate('/catalog'); }}>
-                        📦 Réserver du matériel pour cet événement
-                      </button>
-                    </div>
+                    {!getEventStatus(selectedEvent.date).isPast && (
+                      <div className={styles.reserveMaterialBtn}>
+                        <button className="btn btn-primary btn-sm" onClick={() => { closeModal(); navigate('/catalog'); }}>
+                          📦 Réserver du matériel pour cet événement
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </>
               ) : null}

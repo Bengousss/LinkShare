@@ -20,7 +20,7 @@ router.put('/:id', authMiddleware, adminMiddleware, (req, res) => {
 });
 
 router.get('/', authMiddleware, (req, res) => {
-  db.all(`SELECT * FROM events`, [], (err, rows) => {
+  db.all(`SELECT * FROM events ORDER BY date ASC`, [], (err, rows) => {
     if (err) return res.status(400).json({ error: 'Erreur' });
     res.json(rows);
   });

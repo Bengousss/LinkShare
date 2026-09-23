@@ -267,7 +267,20 @@ export default function Catalog() {
                         <label>Associer à un événement (optionnel)</label>
                         <select className="input" value={resEventId} onChange={e => setResEventId(e.target.value)}>
                           <option value="">— Aucun événement —</option>
-                          {events.map(ev => <option key={ev.id} value={ev.id}>{ev.title} ({ev.date})</option>)}
+                          {events
+                            .filter(ev => {
+                              const today = new Date();
+                              today.setHours(0, 0, 0, 0);
+                              const evDate = new Date(ev.date);
+                              evDate.setHours(0, 0, 0, 0);
+                              return evDate >= today;
+                            })
+                            .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+                            .map(ev => (
+                              <option key={ev.id} value={ev.id}>
+                                {ev.title} ({new Date(ev.date).toLocaleDateString('fr-FR')})
+                              </option>
+                            ))}
                         </select>
                       </div>
                       <div className="input-group">
