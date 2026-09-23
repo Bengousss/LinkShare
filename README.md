@@ -159,7 +159,7 @@ L'application est accessible sur **http://localhost:5173**
 | Admin | `admin` | `admin123` |
 | Bénévole | *(créer via /register)* | *(au choix)* |
 
-> ⚠️ Ces identifiants sont uniquement destinés au prototype. Ne pas utiliser en production.
+> WARNING ! Ces identifiants sont uniquement destinés au prototype. Ne pas utiliser en production.
 
 ---
 

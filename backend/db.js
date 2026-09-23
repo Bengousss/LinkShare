@@ -37,11 +37,11 @@ db.serialize(() => {
 
   db.run(`
     CREATE TABLE IF NOT EXISTS materials (
-      id               INTEGER PRIMARY KEY AUTOINCREMENT,
-      nom              TEXT NOT NULL,
-      description      TEXT,
-      quantite_totale  INTEGER NOT NULL DEFAULT 1,
-      etat             TEXT DEFAULT 'disponible'
+      id              INTEGER PRIMARY KEY AUTOINCREMENT,
+      nom             TEXT NOT NULL,
+      description     TEXT,
+      quantite_totale INTEGER NOT NULL DEFAULT 1,
+      etat            TEXT DEFAULT 'disponible'
     )
   `);
 
@@ -74,10 +74,31 @@ db.serialize(() => {
   db.get(`SELECT COUNT(*) as count FROM events`, [], (err, row) => {
     if (err || row.count > 0) return;
     const demoEvents = [
-      { title: 'Collecte alimentaire',      description: 'Distribution de nourriture aux personnes dans le besoin. Manutention légère.',              date: '2026-06-15' },
-      { title: 'Nettoyage du parc Blandan', description: 'Action citoyenne pour nettoyer le parc municipal. Gants et sacs fournis.',                  date: '2026-06-22' },
-      { title: 'Atelier informatique seniors', description: "Initiation à l'informatique pour les seniors du quartier. Patience et pédagogie !",      date: '2026-07-05' },
-      { title: 'Maraude centre-ville',      description: "Distribution de repas chauds et de kits d'hygiène aux personnes sans-abri.",               date: '2026-07-12' },
+      {
+        title: 'Collecte alimentaire',
+        description: 'Récupération de denrées auprès de donateurs (particuliers, commerces) pour alimenter le stock de l\'association. Manutention légère.',
+        date: '2026-09-10'
+      },
+      {
+        title: 'Distribution alimentaire',
+        description: 'Distribution de nourriture aux personnes dans le besoin. Manutention légère.',
+        date: '2026-09-18'
+      },
+      {
+        title: 'Nettoyage du parc Blandan',
+        description: 'Action citoyenne pour nettoyer le parc municipal. Gants et sacs fournis.',
+        date: '2026-09-27'
+      },
+      {
+        title: 'Atelier informatique seniors',
+        description: "Initiation à l'informatique pour les seniors du quartier. Patience et pédagogie !",
+        date: '2026-10-10'
+      },
+      {
+        title: 'Maraude centre-ville',
+        description: "Distribution de repas chauds et de kits d'hygiène aux personnes sans-abri.",
+        date: '2026-10-24'
+      },
     ];
     demoEvents.forEach(ev => {
       db.run(
@@ -91,14 +112,14 @@ db.serialize(() => {
   db.get(`SELECT COUNT(*) as count FROM materials`, [], (err, row) => {
     if (err || row.count > 0) return;
     const demoMaterials = [
-      { nom: 'Tables pliantes',      description: 'Tables légères pour installation rapide sur le terrain.',  quantite_totale: 10, etat: 'disponible' },
-      { nom: 'Chaises pliantes',     description: 'Chaises légères pour les participants et bénévoles.',       quantite_totale: 30, etat: 'disponible' },
-      { nom: 'Gilets bénévoles',     description: 'Gilets orange haute-visibilité taille unique.',             quantite_totale: 20, etat: 'disponible' },
+      { nom: 'Tables pliantes',      description: 'Tables légères pour installation rapide sur le terrain.', quantite_totale: 10, etat: 'disponible' },
+      { nom: 'Chaises pliantes',     description: 'Chaises légères pour les participants et bénévoles.',      quantite_totale: 30, etat: 'disponible' },
+      { nom: 'Gilets bénévoles',     description: 'Gilets orange haute-visibilité taille unique.',            quantite_totale: 20, etat: 'disponible' },
       { nom: 'Mégaphone',            description: 'Mégaphone 15W pour coordination sur le terrain.',          quantite_totale: 2,  etat: 'disponible' },
       { nom: 'Sono portable',        description: 'Enceinte Bluetooth rechargeable pour animations.',          quantite_totale: 3,  etat: 'disponible' },
-      { nom: 'Kit premiers secours', description: 'Trousse complète conforme normes EN 13157.',               quantite_totale: 5,  etat: 'disponible' },
-      { nom: 'Barrières Vauban',     description: 'Barrières de sécurité pour délimiter les zones.',          quantite_totale: 15, etat: 'disponible' },
-      { nom: 'Tentes 3x3m',          description: 'Barnums faciles à monter, résistants à la pluie.',         quantite_totale: 4,  etat: 'disponible' },
+      { nom: 'Kit premiers secours', description: 'Trousse complète conforme normes EN 13157.',                quantite_totale: 5,  etat: 'disponible' },
+      { nom: 'Barrières Vauban',     description: 'Barrières de sécurité pour délimiter les zones.',           quantite_totale: 15, etat: 'disponible' },
+      { nom: 'Tentes 3x3m',          description: 'Barnums faciles à monter, résistants à la pluie.',          quantite_totale: 4,  etat: 'disponible' },
     ];
     demoMaterials.forEach(m => {
       db.run(
